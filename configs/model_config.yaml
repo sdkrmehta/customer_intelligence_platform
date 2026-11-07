@@ -1,0 +1,71 @@
+# ============================================================
+# Customer Intelligence Platform — Model Configuration
+# ============================================================
+# All tunable settings in one place. The training pipeline and
+# Streamlit app read from this file so you never need to edit
+# Python source code to change a hyperparameter.
+
+# --- Data ---
+data:
+  raw_path: "data/raw/Retail_Transactions_Dataset.csv"
+  processed_dir: "data/processed"
+  date_format_dayfirst: true
+
+# --- Training ---
+training:
+  horizon_days: 365            # Predict purchase within this many days
+  test_size: 0.25              # Fraction held out for evaluation
+  random_state: 42
+  default_model: "logistic_regression"
+
+# --- Model hyperparameters ---
+models:
+  logistic_regression:
+    max_iter: 2000
+    class_weight: "balanced"
+
+  random_forest:
+    n_estimators: 200
+    max_depth: 12
+    min_samples_split: 10
+    min_samples_leaf: 5
+    class_weight: "balanced"
+
+  xgboost:
+    n_estimators: 200
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: 1    # auto-calculated at runtime if set to 1
+    eval_metric: "logloss"
+    verbosity: 0
+
+  lightgbm:
+    n_estimators: 200
+    max_depth: 8
+    learning_rate: 0.1
+    num_leaves: 31
+    subsample: 0.8
+    colsample_bytree: 0.8
+    is_unbalance: true
+    verbose: -1
+
+# --- Evaluation ---
+evaluation:
+  probability_threshold: 0.5   # Classify as positive above this
+  low_confidence_min_positives: 20
+
+# --- Recommendation ---
+recommendation:
+  top_n: 8
+  weights:
+    popularity: 0.6
+    context: 0.8
+    personal: 2.5
+    association: 1.8
+
+# --- Prediction bands ---
+bands:
+  high_threshold: 0.60
+  medium_threshold: 0.30

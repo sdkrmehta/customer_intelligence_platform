@@ -1,0 +1,54 @@
+[project]
+name = "customer-intelligence-platform"
+version = "1.0.0"
+description = "Customer Intelligence Platform — ML-powered purchase prediction, CLV forecasting, RFM segmentation, and market basket analysis"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+
+dependencies = [
+    "pandas>=2.2.0",
+    "scikit-learn>=1.6.0",
+    "xgboost>=2.0.0",
+    "lightgbm>=4.0.0",
+    "shap>=0.45.0",
+    "mlxtend>=0.23.0",
+    "mlflow>=2.15.0",
+    "matplotlib>=3.9.0",
+    "streamlit>=1.40.0",
+    "plotly>=5.24.0",
+    "joblib>=1.4.0",
+    "numpy>=1.26.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.0",
+]
+notebooks = [
+    "jupyter>=1.0.0",
+    "matplotlib>=3.9.0",
+    "seaborn>=0.13.0",
+]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM"]
+ignore = ["E501"]

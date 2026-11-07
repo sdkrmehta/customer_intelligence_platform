@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Python bytecode & environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# Large local datasets (mount via volume instead)
+data/raw/*.csv
+data/processed/*.parquet
+
+# Model artifacts & experiment logs (mount via volume)
+models/*.joblib
+models/plots/*
+mlruns/
+mlflow.db
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

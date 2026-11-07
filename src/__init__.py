@@ -1,1 +1,1 @@
-"""Modules used by the retail customer purchase prediction application."""
+"""Retail Customer Purchase Prediction — top-level source package."""

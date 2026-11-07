@@ -1,0 +1,18 @@
+services:
+  retail-predictor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: customer-intelligence-platform:latest
+    container_name: retail-predictor-app
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount data and models from host to persist training outputs
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./mlruns:/app/mlruns
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    restart: unless-stopped
