@@ -198,7 +198,7 @@ Tested on a 25% stratified holdout set across 1,000,000 transactions:
 
 6. **Launch the interactive Streamlit dashboard:**
    ```bash
-   streamlit run app/streamlit_app.py
+   python -m streamlit run app/streamlit_app.py
    ```
 
 ---
